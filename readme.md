@@ -25,7 +25,7 @@ Origem: Digital Innovation One
 	- 3 - Para mudarmos o tipo de uma variável já existente, basta setar um valor de outro tipo:
 
 	~~~~
-	Exemplo: 
+	Exemplo:
 	var teste = 1;
 	teste = 'texto';
 	~~~~
@@ -111,7 +111,7 @@ function fnHoistingVar) {
 //Exemplo de variável que não foi ainda 'declarada', devido ao hoisting a váriavel é considerada indefinida ao invés de não declarada (reference error)
 //nesse console é escrito undefined
 	console.log(text);
-	
+
 	var text = 'Exemplo';
 //aqui já é retornando string
 	console.log(text);
@@ -126,7 +126,7 @@ fnHoistingVar();
 function fnHoistingFun()) {
 //mesmo a chamada da função aparecer primeiro que a função, não ocorre erro, porém como boa prática é melhor declarar a função antes de usar
 	log('Hoisting de função');
-	
+
 	function log(value) {
 	console.log(value);
 	}
@@ -226,7 +226,7 @@ var test = 'example';
 (() => {
 //undefined, pois nesse momento não tem valor
 	console.log(`Valor dentro do função "${test}"`);
-	
+
 	if (true) {
 	//essa declaração e atribuição sobre para o escopo
 		var test = 'example';
@@ -245,13 +245,13 @@ var test = 'example';
 	let test = 'valor função';
 
 	console.log(`Valor dentro do função "${test}"`);
-	
+
 	if (true) {
 	//aqui o test não é o mesmo que o anterior, pois ele respeita o contexto de bloco, sendo assim o anterior não tem o valor alterado por esse atribuição
 		let test = 'valor if';
 		console.log(`Valor dentro do if "${test}"`);
 	}
-	
+
 	console.log(`Valor após a execução do if "${test}"`);
 })();
 ~~~~
@@ -262,12 +262,12 @@ var test = 'example';
 (() => {
 	const test = 'valor função';
 	console.log(`Valor dentro do função "${test}"`);
-	
+
 	if (true) {
 		const test = 'valor if';
 		console.log(`Valor dentro do if "${test}"`);
 	}
-	
+
 	console.log(`Valor após a execução do if "${test}"`);
 })();
 ~~~~
@@ -573,20 +573,20 @@ function controlFnExec(fnParam) {
 	this.name = 'Nome no contexto de criação';
 
 	const getNameArrowFn = () => this.name;
-	
+
 	function getName() {
 		return this.name;
 	}
-	
+
 	const user = {
 		name: 'Nome no objeto de execução',
 		getNameArrowFn,
 		getName
 	}
-	
+
 	console.log(user.getNameArrowFn());
 	console.log(user.getName());
-	
+
 })();
 ~~~~
 
@@ -831,8 +831,8 @@ var arvores = new Array("pau-brasil", "loureiro", "cedro", "carvalho", "sicômor
 6 in arvores;           //retorna false
 "cedro" in arvores      //retorna false (você deve especificar o número do índice),
 												//não o valor naquele índice
-"cedro" in arvores[2]   //retorna true 
-"length" in arvores     //retorna true (length é uma propriedade de Array)                        
+"cedro" in arvores[2]   //retorna true
+"length" in arvores     //retorna true (length é uma propriedade de Array)
 
 
 //objetos predefinidos
@@ -937,7 +937,7 @@ switch (fruit) {
 	case 'pera':
 		console.log('R$ 2,00 / KG')
 		break;
-	default: 
+	default:
 		console.log('Produto não existe no estoque');
 		break;
 }
@@ -966,7 +966,7 @@ let arr = [3, 5, 7];
 arr.foo = "hello";
 
 //for-in - imprime indices do array
-for (let i in arr) { 
+for (let i in arr) {
 	console.log(i); 	//0, 1, 2, foo
 }
 
@@ -998,7 +998,7 @@ console.log(x);
 
 //1-do-while.js
 /*
-do 
+do
 	code
 while(condicao);
 */
@@ -1050,6 +1050,7 @@ Origem: Digital Innovation One
 ## Aula I - Introdução a orientação a objetos
 
 **Herança**
+
 Herança é baseada em protótipos, onde é utilizada aparece o tipo prototype, toda vez que é criada uma variável no javascript é criado um referência __proto__ que aponta para o prototype do tipo que criamos, esse tipo é o constructor. Baseado em um constructor é criado um prototype e nessa variável é armazenada a referência __proto__
 - baseadas em protótipos
 - prototype
@@ -1275,6 +1276,7 @@ Design Patterns ou padrões de projetos são soluções generalistas para proble
 
 ### Tipos
 **Criação**
+
 Os padrões de criação são aqueles que abstraem e/ou adiam o processo de criação dos objetos. Eles ajudam a tornar um sistema independente de como seus objetos são criados, compostos e representados.
 
 *Padrões de criação*
@@ -1285,6 +1287,7 @@ Os padrões de criação são aqueles que abstraem e/ou adiam o processo de cria
 - Singleton
 
 **Estruturais**
+
 Os padrões estruturais se preocupam com a forma como classes e objetos são compostos para forma estrutura maiores.
 
 *Padrões estruturais*
@@ -1298,6 +1301,7 @@ Os padrões estruturais se preocupam com a forma como classes e objetos são com
 - Proxy
 
 **Comportamentais**
+
 Os padrões de comportamento se concentram nos algoritmos e atribuições de responsabilidades entre os objetos. Ele não descrevem apenas padrões de objetos ou de classes, mas também os padroes de comunicação entre os objetos.
 
 *Padrões comportamentais*
@@ -1315,6 +1319,7 @@ Os padrões de comportamento se concentram nos algoritmos e atribuições de res
 
 ### Patterns mais utilizados no javascript
 **Factory**
+
 Todas as funções que retornam um objeto, sem a necessidade de chamá-las com o new, são considerasd funções *Factory*.
 
 ~~~~
@@ -1335,6 +1340,7 @@ console.log(pessoa);
 ~~~~
 
 **Singleton**
+
 O objetivo desse pattern é criar uma única instância de uma função construtora e retorná-la toda vez que for necessário utilizá-la.
 
 ~~~~
@@ -1364,6 +1370,7 @@ console.log(pessoa2);
 ~~~~
 
 **Decorator**
+
 Uma função decorator recebe uma outra função como parâmetro e estende o seu comportamento sem modificá-la explicitamente.
 
 ~~~~
@@ -1389,6 +1396,7 @@ console.log(callIfAuthenticated(() => sum(2, 3)));
 ~~~~
 
 **Observer**
+
 É um pattern muito popular em aplicações javascript. A instância (subscriber) mantém uma coleção de objetos (observers) e notifica todos eles quando ocorrem mudanças no estado.
 
 ~~~~
@@ -1430,6 +1438,7 @@ o.notify('notified 2');
 ~~~~
 
 **Module**
+
 É um pattern que possibilita organizarmos melhor o nosso código necessidade de expor variáveis globais.
 
 ~~~~
@@ -1437,7 +1446,7 @@ o.notify('notified 2');
 let name = 'default';
 
 function getName() {
-  return name;
+	return name;
 }
 
 function setName(newName) {
@@ -1463,20 +1472,20 @@ console.log(getName());
 **De acordo com o código abaixo, as alternativas corretas são:**
 ~~~~
 function Pessoa(nome, idade) {
-  this.nome = nome;
-  this.idade = idade;
+	this.nome = nome;
+	this.idade = idade;
 
-  return {
-    nome,
-    idade: 20,
-    falar() {
-      console.log('objeto falar');
-    }
-  }
+	return {
+		nome,
+		idade: 20,
+		falar() {
+			console.log('objeto falar');
+		}
+	}
 }
 
 Pessoa.prototype.falar = function() {
-  console.log('prototype falar');
+	console.log('prototype falar');
 };
 
 const pessoa = new Pessoa('Foo', 30);
@@ -1497,25 +1506,25 @@ V   - Executando a função "pessoa.falar()" será logado no console o texto 'pr
 class ID {
 	static #contador = 0;
 
-  static get contador() {
-    return this.#contador;
-  }
+	static get contador() {
+		return this.#contador;
+	}
 
-  static incrementaContador() {
-    return ++this.#contador;
-  }
+	static incrementaContador() {
+		return ++this.#contador;
+	}
 }
 
 class Cliente {
-  #id = 0;
+	#id = 0;
 
-  constructor() {
-    this.#id = ID.incrementaContador();
-  }
+	constructor() {
+		this.#id = ID.incrementaContador();
+	}
 
-  get id() {
-    return this.#id;
-  }
+	get id() {
+		return this.#id;
+	}
 }
 
 const c1 = new Cliente();
@@ -1557,13 +1566,13 @@ Conta.prototype.rendimento = 0;
 Conta.prototype.depositar = function() {}
 Conta.prototype.retirar = function() {}
 Conta.prototype.exibirSaldo = function() {
-  return `O saldo da conta é: ${this.saldo}.`;
+	return `O saldo da conta é: ${this.saldo}.`;
 }
 
 function ContaPoupanca() {
-  this.exibirSaldo = function() {
-    return 'Operação não disponível';
-  }
+	this.exibirSaldo = function() {
+		return 'Operação não disponível';
+	}
 }
 
 ContaPoupanca.prototype.rendimento = 0.03;
@@ -1585,19 +1594,19 @@ V   - O retorno da função "contaPoupanca.__proto__.exibirSaldo()" será: "O sa
 **Analisando o código abaixo, quais serão as saídas dos console.log:**
 ~~~~
 function Pessoa(nome) {
-  this.nome = nome;
+	this.nome = nome;
 }
 
 function PessoaFisica(nome, cpf) {
-  Pessoa.call(this, nome);
+	Pessoa.call(this, nome);
 
-  this.cpf = cpf;
+	this.cpf = cpf;
 }
 
 function PessoaJuridica(nome, cnpj) {
-  Pessoa(nome);
+	Pessoa(nome);
 
-  this.cnpj = cnpj;
+	this.cnpj = cnpj;
 }
 
 const pessoaFisica = new PessoaFisica('Foo', '123.456.670-0');
@@ -1611,31 +1620,31 @@ console.log(pessoaJuridica);
 **No código abaixo as funções "adicionaUsuarioLogado" e "executaSeUsuarioEstaLogado" são exemplos de qual pattern:**
 ~~~~
 function adicionaUsuarioLogado(fn) {
-  const usuarioLogado = {
-    nome: 'Foo',
-    sobrenome: 'Bar'
-  };
+	const usuarioLogado = {
+		nome: 'Foo',
+		sobrenome: 'Bar'
+	};
 
-  fn(usuarioLogado);
+	fn(usuarioLogado);
 }
 
 function executaSeUsuarioEstaLogado(usuarioLogado, fn) {
-  if (!usuarioLogado) {
-    console.log('Usuário não está logado.');
-    return;
-  }
+	if (!usuarioLogado) {
+		console.log('Usuário não está logado.');
+		return;
+	}
 
-  fn();
+	fn();
 }
 
 function notificaUsuarioLogado(usuarioLogado) {
-  console.log(`Bem-vindo usuário ${usuarioLogado.nome}!`);
+	console.log(`Bem-vindo usuário ${usuarioLogado.nome}!`);
 }
 
 adicionaUsuarioLogado(
-  usuarioLogado => executaSeUsuarioEstaLogado(usuarioLogado, () => {
-    notificaUsuarioLogado(usuarioLogado);
-  })
+	usuarioLogado => executaSeUsuarioEstaLogado(usuarioLogado, () => {
+		notificaUsuarioLogado(usuarioLogado);
+	})
 );
 ~~~~
 
@@ -1645,38 +1654,38 @@ adicionaUsuarioLogado(
 ~~~~
 I -
 function exibeNome(nome) {
-  console.log(nome);
+	console.log(nome);
 }
 
 II -
 function Pessoa(nome) {
-  this.nome = nome;
+	this.nome = nome;
 }
 
 III -
 function Pessoa(nome) {
-  return {
-    nome
-  };
+	return {
+		nome
+	};
 }
 
 IV -
 function recuperaDadosFormulario(formulario) {
-  if (!formulario) {
-    return {};
-  }
+	if (!formulario) {
+		return {};
+	}
 
-  const dados = {
-    nome: formulario.nome,
-    idade: formulario.idade
-  };
+	const dados = {
+		nome: formulario.nome,
+		idade: formulario.idade
+	};
 
-  return dados;
+	return dados;
 }
 
 V -
 function setNome(nome) {
-  this.nome = nome;
+	this.nome = nome;
 }
 ~~~~
 
@@ -1686,19 +1695,19 @@ function setNome(nome) {
 **Na versão 12 do nodejs é possível que uma classe possua propriedades privadas aplicando um prefixo "#" no nome de seus atributos e métodos. Analise a classe abaixo e selecione a informação que possui o que será exibido pelos "console.log" respectivamente:**
 ~~~~
 class Pessoa {
-  #nome = '';
+	#nome = '';
 
-  constructor(nome) {
-    this.#nome = nome;
-  }
+	constructor(nome) {
+		this.#nome = nome;
+	}
 
-  get nome() {
-    return `Seu nome é: ${this.#nome}.`;
-  }
+	get nome() {
+		return `Seu nome é: ${this.#nome}.`;
+	}
 
-  set nome(novoNome) {
-    this.#nome = novoNome;
-  }
+	set nome(novoNome) {
+		this.#nome = novoNome;
+	}
 }
 
 const pessoa = new Pessoa();
@@ -1726,6 +1735,7 @@ console.log(arr2)
 ~~~~
 
 **Array.of**
+
 Cria uma nova instância de array a partir do número de parâmetros informados.
 ~~~~
 //1-criando-arrays.js
@@ -1734,6 +1744,7 @@ console.log(arr3)
 ~~~~
 
 **Por instância**
+
 Cria uma nova instância de array de acordo com os parâmetros informados
 ~~~~
 //1-criando-arrays.js
@@ -1747,6 +1758,7 @@ console.log(arr5)
 ~~~~
 
 **Array.from**
+
 Cria uma nova instância de array a partir de um parâmetro array-like ou iterable object
 ~~~~
 //1-criando-arrays.js
@@ -1759,6 +1771,7 @@ console.log(arr6)
 
 ### Inserir e remover elementos
 **push**
+
 Adiciona um ou mais elementos no final do array e retorna o tamanaho do novo array
 
 ~~~~
@@ -1774,6 +1787,7 @@ console.log(arr1)
 ~~~~
 
 **pop**
+
 Remove o último elemento de um array e retorna o elemento removido
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1788,6 +1802,7 @@ console.log(arr2)
 ~~~~
 
 **unshift**
+
 Adiciona um ou mais elementos no início do array e retorna o tamanho do novo array
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1802,6 +1817,7 @@ console.log(arr1)
 ~~~~
 
 **shift**
+
 Remove o primeiro elemento de um array e retorna o elemento removido
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1816,6 +1832,7 @@ console.log(arr4)
 ~~~~
 
 **concat**
+
 Concatena um ou mais arrays retornando um novo array
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1828,6 +1845,7 @@ console.log(arr7)
 ~~~~
 
 **slice**
+
 Retorna um novo array "fatiando" o array de acordo com o início e fim
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1837,7 +1855,7 @@ const arr8 = ['banana', 'melancia', 'abacate', 'acerola', 'laranja'];
 console.log(arr8.slice(0, 2));
 //['banana', 'melancia']
 
-//retorna a partir de 
+//retorna a partir de
 console.log(arr8.slice(2));
 //['abacate', 'acerola', 'laranja']
 
@@ -1851,6 +1869,7 @@ console.log(arr8.slice(-3));
 ~~~~
 
 **splice**
+
 Altera um array adicionando novos elementos enquanto remove elementos antigos
 ~~~~
 //2-inserir-remover-elementos-arrays.js
@@ -1877,6 +1896,7 @@ console.log(arr9);
 
 ### Iterar elementos
 **forEach**
+
 Iteração de cada item dentro de um array
 ~~~~
 //3-iterar.js
@@ -1890,6 +1910,7 @@ arr1.forEach((value, index) => {
 ~~~~
 
 **map**
+
 Retorna um novo array, de mesmo tamanho, iterando cada item de um array
 ~~~~
 //3-iterar.js
@@ -1899,6 +1920,7 @@ console.log(arrMap)
 ~~~~
 
 **flat**
+
 Retorna um novo array com todos os elementos de um sub-array concatenados de forma recursiva de acordo com a profundidade especificada(depth)
 ~~~~
 //3-iterar.js
@@ -1908,6 +1930,7 @@ const arrFlat = arr3.flat(2)
 ~~~~
 
 **flatMap**
+
 Retorna um novo array assim como a função map e executa um flat de profundidade 1
 ~~~~
 //3-iterar.js
@@ -1919,6 +1942,7 @@ console.log(arrFlatMap);
 ~~~~
 
 **keys**
+
 Retorna um Array Iterator que contém as chaves para cada elemento do array.
 ~~~~
 //3-iterar.js
@@ -1939,6 +1963,7 @@ arrIterator.next();
 ~~~~
 
 **Values**
+
 Retorna um Array Iterator que contém os valores para cada elemento do array
 ~~~~
 //3-iterar.js
@@ -1959,6 +1984,7 @@ arrIterator.next();
 ~~~~
 
 **Entries**
+
 Retorna um Array Iterator que contém os pares chave/valor para cada elemento do array
 ~~~~
 //3-iterar.js
@@ -1980,6 +2006,7 @@ arrIterator.next();
 
 ### Buscar elementos
 **find**
+
 Retorna o primeiro item de um array que satisfaz a condição
 ~~~~
 //4-buscar.js
@@ -1992,6 +2019,7 @@ console.log(firstGreatThanTwo);
 ~~~~
 
 **findIndex**
+
 Retorna o índice do primeiro item de um array que satisfaz a condição
 ~~~~
 //4-buscar.js
@@ -2003,6 +2031,7 @@ console.log(firstGreatThanTwo2);
 ~~~~
 
 **filter**
+
 Retorna um novo arrau com todos os elementos que satisfazem a condição
 ~~~~
 //4-buscar.js
@@ -2014,6 +2043,7 @@ console.log(allValuesGreatThanTwo);
 ~~~~
 
 **indexOf**
+
 Retorna o primeiro índice em que um elemento pode ser encontrado no array
 ~~~~
 //4-buscar.js
@@ -2025,6 +2055,7 @@ console.log(firstIndexOfItem);
 ~~~~
 
 **lastIndexOf**
+
 Retorna o último índice em que um elemento pode ser encontrado no array
 ~~~~
 //4-buscar.js
@@ -2036,6 +2067,7 @@ console.log(lastIndexOfItem);
 ~~~~
 
 **includes**
+
 Retorna um booleano verificando se determinado elemento existe no array
 ~~~~
 //4-buscar.js
@@ -2049,6 +2081,7 @@ const hasItemTwo = arr5.includes(2);
 ~~~~
 
 **some**
+
 Retorna um bolleano verificando se pelo menos um item do array satisfaz a condição.
 ~~~~
 //4-buscar.js
@@ -2059,6 +2092,7 @@ const hasSomeEvenNumber = arr6.some(value => value % 2 === 0);
 ~~~~
 
 **every**
+
 Retorna um bolleano verificando se todos os itens de um array satisfazem a condição
 ~~~~
 //4-buscar.js
@@ -2070,6 +2104,7 @@ const allEvenNumbers = arr7.some(value => value % 2 === 0);
 
 ### Ordenar elementos
 **sort**
+
 Ordena os elementos de um array de acordo com a condição
 ~~~~
 //5-ordenar.js
@@ -2080,6 +2115,7 @@ console.log(arr8.sort((curret, next) => next.grade - curret.grade));
 ~~~~
 
 **reverse**
+
 Inverte os elementos de um array
 ~~~~
 //5-ordenar.js
@@ -2091,6 +2127,7 @@ console.log(arr.reverse());
 
 ### Transforma em outro tipo de dados
 **join**
+
 Junta todos os elementos de um array, separados por um delimitador e retorna uma string
 ~~~~
 //6-transformar-dados.js
@@ -2101,6 +2138,7 @@ console.log('-');
 ~~~~
 
 **reduce**
+
 Retorna um novo tipo de dado iterando cada posição de um array
 ~~~~
 //6-transformar-dados.js
@@ -2183,17 +2221,17 @@ V   - frutas.unshift();
 **Analise o código abaixo e assinale a alternativa que possui o valor da variável "colaboradoresComSalario":**
 ~~~~
 const colaboradores = [
-  { nome: "Cris", horasTrabalhadas: 220 },
-  { nome: "Rebeca", horasTrabalhadas: 210 }
+	{ nome: "Cris", horasTrabalhadas: 220 },
+	{ nome: "Rebeca", horasTrabalhadas: 210 }
 ];
 
 function adicionaSalario(colaborador) {
-  const salario = colaborador.horasTrabalhadas * 50;
-  colaborador.salario = salario;
+	const salario = colaborador.horasTrabalhadas * 50;
+	colaborador.salario = salario;
 
-  return {
-    salario: salario
-  };
+	return {
+		salario: salario
+	};
 }
 
 const colaboradoresComSalario = colaboradores.map(adicionaSalario);
@@ -2218,13 +2256,13 @@ console.log(person);
 **Analise o código abaixo e assinale a alternativa que representa os valores corretos que serão exibidos nos console.log respectivamente:**
 ~~~~
 const alunos = [
-  { nome: "Cris", nota: 10 },
-  { nome: "Alexandre", nota: 7 },
-  { nome: "Pablo", nota: 4 }
+	{ nome: "Cris", nota: 10 },
+	{ nome: "Alexandre", nota: 7 },
+	{ nome: "Pablo", nota: 4 }
 ];
 
 function alunoAprovado(aluno) {
-  return aluno.nota >= 7;
+	return aluno.nota >= 7;
 }
 
 console.log(alunos.filter(alunoAprovado));

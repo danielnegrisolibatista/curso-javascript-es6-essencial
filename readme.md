@@ -1492,10 +1492,15 @@ const pessoa = new Pessoa('Foo', 30);
 ~~~~
 
 **Com base no código acima, observe as afirmativas abaixo:**
+
 I   - O retorno será um objeto "{ nome: 'Foo', idade: 20 }". Pois mesmo chamando a função Pessoa com a palavra-chave new, a função possui retorno explicito.
+
 II  - A expressão "pessoa.constructor === Pessoa" retornará true. Pois como utilizamos a palavra-chave new, sempre será retornado uma instância de pessoa, mesmo quando a função possui retorno explícito.
+
 III - A expressão "pessoa.constructor === Object" retornará true. Pois o retorno da função é um objeto.
+
 IV  - A expressão "pessoa.__proto__.falar === undefined" retornará true. Pois como há retorno explícito de um objeto na função Pessoa, suas definições não são passadas a esse objeto.
+
 V   - Executando a função "pessoa.falar()" será logado no console o texto 'prototype falar'.
 
 **R: I, III, IV**
@@ -1537,10 +1542,15 @@ console.log(`Contador atual: ${ID.contador}.`);
 ~~~~
 
 **As afirmativas abaixo são:**
+
 I   - É possível chamar o método "incrementaContador" sem instanciar a classe ID pois o método possui a palavra-chave static.
+
 II  - A saídas dos console.log são respectivamente: "Contador atual: 1." e "Contador atual: 3.".
+
 III - É possível instanciar a classe ID mas sua instancia não herdará os atributos/métodos com a palavra-chave static.
+
 IV  - Quando uma função possui todos os atributos/métodos static não é possível chamá-la com a palavra-chave new.
+
 V   - Métodos que possuem a palavra-chave static, só podem ser chamados por outros métodos static.
 
 **R: I, II, III**
@@ -1551,9 +1561,13 @@ V   - Métodos que possuem a palavra-chave static, só podem ser chamados por ou
 const name = 'Foo';
 const lastName = String('Bar');
 ~~~~
+
 I   - name.constructor === lastName.constructor
+
 II  - name.prototype === String.prototype
+
 III - lastName.__proto__ === String.prototype
+
 IV  - name.__proto__.split === lastName.__proto__.split
 
 **R: I, III, IV**
@@ -1582,10 +1596,15 @@ const contaPoupanca = new ContaPoupanca();
 ~~~~
 
 **Agora avalie as afirmativas abaixo e assinale a alternativa que apresenta as corretas:**
+
 I   - A variável "contaPoupanca" será uma instância de ContaPoupanca, ou seja, a expressão "contaPoupanca instanceof ContaPoupanca" retornará true.
+
 II  - A variável "contaPoupanca" possuíra os métodos "depositar", "retirar" e "exibirSaldo". Mas a implementação da função "exibirSaldo" não será sobrescrita, pois não é possível sobrescrever propriedades de um prototype.
+
 III - O retorno da função "contaPoupanca.exibirSaldo()" será: "O saldo da conta é: undefined.".
+
 IV  - O valor do atributo "rendimento" da variável "contaPoupanca" será 0.3.
+
 V   - O retorno da função "contaPoupanca.__proto__.exibirSaldo()" será: "O saldo da conta é: undefined.".
 
 **R: I, V**
@@ -2032,7 +2051,7 @@ console.log(firstGreatThanTwo2);
 
 **filter**
 
-Retorna um novo arrau com todos os elementos que satisfazem a condição
+Retorna um novo array com todos os elementos que satisfazem a condição
 ~~~~
 //4-buscar.js
 const arr3 = [1, 2, 3, 4];

@@ -1,12 +1,16 @@
 
 # Curso JavaScript ES6 essencial
+
 JavaScript ES6 essencial
+
 # Módulo I - Introdução ao ES6
-> Autor: Guilherme Cabrini da Silva
-Origem: Digital Innovation One
+
+- Autor: Guilherme Cabrini da Silva
+- Origem: Digital Innovation One
 
 ## Aula I - História e conceitos
-**História**
+
+### História
 
 - Javascript foi lançado em setembro de 1995
 - Foi lançado junto com a versão beta do Netscape 2.0
@@ -15,80 +19,73 @@ Origem: Digital Innovation One
 - ECMAScript é uma especificação de linguagem script criada pela Ecma International, utilizada por linguagens como: ActionScript, JScript e Javascript.
 - O comitê [TC39](https://github.com/tc39) é quem avalia as [propostas de melhorias](https://github.com/tc39/proposals)
 
-
-**Conceitos**
+### Conceitos
 
 - Linguagem interpretada
 - O JavaScript possui tipagem fraca e dinâmica pois
-	- 1 - O tipo da variável no JavaScript é definido no momento de sua atribuição, esse processo se chama inferência de tipo.
-	- 2 - Não é lançado um erro ou uma Exception durante a execução de:  1 + "texto".
-	- 3 - Para mudarmos o tipo de uma variável já existente, basta setar um valor de outro tipo:
-
-	~~~~
-	Exemplo:
-	var teste = 1;
-	teste = 'texto';
-	~~~~
-
-	- 4 - Não é necessário explicitar o tipo na criação de uma variável no JavaScript.
+  - 1 - O tipo da variável no JavaScript é definido no momento de sua atribuição, esse processo se chama inferência de tipo.
+  - 2 - Não é lançado um erro ou uma Exception durante a execução de:  1 + "texto".
+  - 3 - Para mudarmos o tipo de uma variável já existente, basta setar um valor de outro tipo:
+  - 4 - Não é necessário explicitar o tipo na criação de uma variável no JavaScript.
 - [Typescript](https://www.typescriptlang.org) é superset da linguagem Javascript
 - [Flow](https://flow.org) é um validador da linguagem.
 - Funções de primeira classe e ordem maior significa que são funções que pode ser atribuídas a uma variável, pode ser atribuída a uma estrutura de dados, e pode ser passada por argumentos, e até retornada por outras funções.
 
-	~~~~
-	//funcoes.js
-	function getName() {
-		return 'Daniel Negrisoli Batista';
-	}
-	function logFn(fn) {
-		console.log(fn());
-	}
+```javascript
+//funcoes.js
+function getName() {
+  return 'Daniel Negrisoli Batista';
+}
+function logFn(fn) {
+  console.log(fn());
+}
 
-	//atribuição a uma variável
-	const logFnResult = logFn;
+//atribuição a uma variável
+const logFnResult = logFn;
 
-	//atribuição a uma estrutura de dados
-	const obj = {
-		logFn: logFn
-	}
+//atribuição a uma estrutura de dados
+const obj = {
+  logFn: logFn
+}
 
-	//função passada por argumentos
-	logFnResult(getName);
-	~~~~
+//função passada por argumentos
+logFnResult(getName);
+```
 
 - Closure ou escopo léxico é a capacidade da função "lembrar" do seu contexto de criação.
 - Escopo em javascript podem ser de 3 maneiras: global, bloco e função
 
-	~~~~
-	//escopo.js
-	//escopo global: arquivo todo
+```javascript
+//escopo.js
+//escopo global: arquivo todo
 
-	{
-		//escopo de bloco, dentro dos branchs
-	}
+{
+  //escopo de bloco, dentro dos branchs
+}
 
-	function fn() {
-	 //escopo de função
-	}
-	~~~~
+function fn() {
+  //escopo de função
+}
+```
 
 ## Aula II - Currying, Hoisting, Imutabilidade, Tipos e Variáveis
+
 ### Currying
 
 É a técnica de transforma uma função com vários parâmetros em apenas um sendo que para cada parâmetro e retornando outra função.
 
-~~~~
+```javascript
 //currying.js
 //função natural
 function somaFn(a, b) {
-	return a + b;
+  return a + b;
 }
 
 //aplicação do currying
-funcion somaCurrying(a) {
-	return function(b) {
-		return a + b;
-	}
+function somaCurrying(a) {
+  return function(b) {
+    return a + b;
+  }
 }
 
 //chamada função natural
@@ -97,43 +94,45 @@ console.log(somaFn(1, 1));
 //chamada função currying
 const resultSoma = somaCurrying(1);
 console.log(resultSoma(1));
-~~~~
+```
 
 ### Hoisting
 
 Hoisting ou içamento é a capacidade do JavaScript elevar a criação de variáveis e funções ao topo do escopo de suas criações. Existem dois tipos de Hoisting: hoisting de variável e hoisting de função.
 No *Hoisting de variável* é elevado a sua criação e não a sua atribução, já no *Hoisting de função* ela é elevado como um todo.
 
-**Hoisting de variável**
-~~~~
+#### Hoisting de variável
+
+```javascript
 //hoisting-variveis.js
 function fnHoistingVar) {
-//Exemplo de variável que não foi ainda 'declarada', devido ao hoisting a váriavel é considerada indefinida ao invés de não declarada (reference error)
-//nesse console é escrito undefined
-	console.log(text);
+  //Exemplo de variável que não foi ainda 'declarada', devido ao hoisting a váriavel é considerada indefinida ao invés de não declarada (reference error)
+  //nesse console é escrito undefined
+  console.log(text);
 
-	var text = 'Exemplo';
-//aqui já é retornando string
-	console.log(text);
+  var text = 'Exemplo';
+  //aqui já é retornando string
+  console.log(text);
 }
 
 fnHoistingVar();
-~~~~
+```
 
-**Hoisting de função**
-~~~~
+#### Hoisting de função
+
+```javascript
 //hoisting-funcao.js
 function fnHoistingFun()) {
-//mesmo a chamada da função aparecer primeiro que a função, não ocorre erro, porém como boa prática é melhor declarar a função antes de usar
-	log('Hoisting de função');
+  //mesmo a chamada da função aparecer primeiro que a função, não ocorre erro, porém como boa prática é melhor declarar a função antes de usar
+  log('Hoisting de função');
 
-	function log(value) {
-	console.log(value);
-	}
+  function log(value) {
+    console.log(value);
+  }
 }
 
 fnHoistingFun();
-~~~~
+```
 
 ### Imutabilidade
 
@@ -142,49 +141,49 @@ Exemplo:
 Se precisar inserir um array, você realizar uma cópia inclui o novo item na cópia.
 Se precisar atualar um objeto, você realizar uma cópia altera o novo item na cópia.
 
-~~~~
+```javascript
 //1-imutabilidade.js
 const user = {
-	name: 'Daniel',
-	lastName: 'Negrisoli Batista'
+  name: 'Daniel',
+  lastName: 'Negrisoli Batista'
 }
 
 //o parâmetro é passado para a função por referência, sendo assim caso ela altere o item o mesmo de onde veio a informação será alterada.
 function getUserWithFullName(user) {
-	return {
-		//spread operator
-		...user,
-		//literal string
-		fullName: `${user.name} ${user.lastName}`
-	}
+  return {
+    //spread operator
+    ...user,
+    //literal string
+    fullName: `${user.name} ${user.lastName}`
+  }
 }
 
 const userWithFullName = getUserWithFullName(user);
 //o retorno é um novo objeto com as alteraçoes desejadas
 console.log(userWithFullName, user);
-~~~~
+```
 
-~~~~
+```javascript
 //2-imutabilidade.js
 //lista de alunos com nome e notas
 const students = [
-	{
-		name: 'Grace,
-		grade: 7
-	},
-	{
-		name: 'Jennifer,
-		grade: 4
-	},
-	{
-		name: 'Paul,
-		grade: 10
-	},
+  {
+    name: 'Grace',
+    grade: 7
+  },
+  {
+    name: 'Jennifer',
+    grade: 4
+  },
+  {
+    name: 'Paul',
+    grade: 10
+  },
 ];
 
 //retorno de alunos aprovados com nota superior ou igual a 7
 function getApprovedStudents(studentsList) {
-	return studentsList.filter(student => student.grade >= 7);
+  return studentsList.filter(student => student.grade >= 7);
 }
 
 console.log('Alunos aprovados');
@@ -194,8 +193,7 @@ console.log(getApprovedStudents(students));
 //retorna a lista completa de alunos
 console.log('\nLista de alunos');
 console.log(students);
-
-~~~~
+```
 
 ### Tipos e variáveis
 
@@ -205,8 +203,9 @@ No momento da criação de variáveis e necessário lembrar dos 3 tipos de escop
 - let
 - const
 
-**Variáveis**
-~~~~
+#### Variáveis
+
+```javascript
 //1-variaveis.js
 var nameVar = 'Daniel';
 let nameLet = 'Daniel';
@@ -215,64 +214,67 @@ const nameConst = 'Daniel';
 console.log(`nameVar : ${nameVar}`);
 console.log(`nameLet : ${nameLet}`);
 console.log(`nameConst : ${nameConst}`);
-~~~~
+```
 
-**Var**
-~~~~
+##### Var
+
+```javascript
 //2-1-variaveis.js
 //var não respeita o contexto de bloco
 var test = 'example';
 
 (() => {
 //undefined, pois nesse momento não tem valor
-	console.log(`Valor dentro do função "${test}"`);
+console.log(`Valor dentro do função "${test}"`);
 
-	if (true) {
-	//essa declaração e atribuição sobre para o escopo
-		var test = 'example';
-		console.log(`Valor dentro do if "${test}"`);
-	}
-	//por isso nesse lugar o test possui o valor atribuido dentro do bloco
-	console.log(`Valor após a execução do if "${test}"`);
+if (true) {
+//essa declaração e atribuição sobre para o escopo
+  var test = 'example';
+  console.log(`Valor dentro do if "${test}"`);
+}
+//por isso nesse lugar o test possui o valor atribuido dentro do bloco
+console.log(`Valor após a execução do if "${test}"`);
 })();
-~~~~
+```
 
-**Let**
-~~~~
+##### Let
+
+```javascript
 //2-2-variaveis.js
 (() => {
 //let respeita o contexto de bloco
-	let test = 'valor função';
+let test = 'valor função';
 
-	console.log(`Valor dentro do função "${test}"`);
+console.log(`Valor dentro do função "${test}"`);
 
-	if (true) {
-	//aqui o test não é o mesmo que o anterior, pois ele respeita o contexto de bloco, sendo assim o anterior não tem o valor alterado por esse atribuição
-		let test = 'valor if';
-		console.log(`Valor dentro do if "${test}"`);
-	}
+if (true) {
+//aqui o test não é o mesmo que o anterior, pois ele respeita o contexto de bloco, sendo assim o anterior não tem o valor alterado por esse atribuição
+  let test = 'valor if';
+  console.log(`Valor dentro do if "${test}"`);
+}
 
-	console.log(`Valor após a execução do if "${test}"`);
+console.log(`Valor após a execução do if "${test}"`);
 })();
-~~~~
+```
 
-**Const**
-~~~~
+##### Const
+
+```javascript
 //2-3-variaveis.js
 (() => {
-	const test = 'valor função';
-	console.log(`Valor dentro do função "${test}"`);
+const test = 'valor função';
+console.log(`Valor dentro do função "${test}"`);
 
-	if (true) {
-		const test = 'valor if';
-		console.log(`Valor dentro do if "${test}"`);
-	}
+if (true) {
+  const test = 'valor if';
+  console.log(`Valor dentro do if "${test}"`);
+}
 
-	console.log(`Valor após a execução do if "${test}"`);
+console.log(`Valor após a execução do if "${test}"`);
 })();
-~~~~
+```
 
-~~~~
+```javascript
 //3-variaveis.js
 //Se for uma const do tipo primitivo,
 const name = 'Daniel';
@@ -281,7 +283,7 @@ const name = 'Daniel';
 name = 'Daniel';
 
 const user = {
-	name: 'Daniel'
+  name: 'Daniel'
 };
 
 //mas se for um objeto, podemos trocar suas propriedades
@@ -289,7 +291,7 @@ user.name = 'Outro nome'
 
 //não podemos fazer o objeto "apontar" para outro lugar
 user = {
-	name: 'Guilherme'
+  name: 'Guilherme'
 };
 
 const persons = ['Daniel', 'Pedro', 'Jennifer'];
@@ -310,16 +312,17 @@ persons[1] = 'James';
 persons = []
 
 console.log('\nArray após as alterações: ', persons);
-~~~~
-
+```
 
 # Módulo II - Tipos, variáveis, operadores, condicionais e repetição em Javascript ES6
-> Autor: Guilherme Cabrini da Silva
-Origem: Digital Innovation One
+
+- Autor: Guilherme Cabrini da Silva
+- Origem: Digital Innovation One
 
 ## Aula I - Tipos e variáveis
 
-**Tipos**
+### Tipos
+
 - string
 - number
 - boolean
@@ -330,7 +333,7 @@ Origem: Digital Innovation One
 - Function
 - Array
 
-~~~~
+```javascript
 //1-string.js
 //retorna o tamanho de uma string
 const textSize = 'Texto'.length;
@@ -357,9 +360,9 @@ console.log('\nValor da string da segunda letra até a última: ', secondToEnd);
 //retorna N caracteres a partir de uma posição
 const twoCharsBeforeFirstPosition = 'Texto'.substr(0, 2);
 console.log('\nAs duas primeiras letras são : ', twoCharsBeforeFirstPosition);
-~~~~
+```
 
-~~~~
+```javascript
 //1-number.js
 const myNumber = 12.4032;
 
@@ -376,30 +379,30 @@ console.log('\nString convertida para float: ', parseFloat('13.22'));
 
 //transforma uma string em int
 console.log('\nString convertida para int: ', parseInt('13.20'));
-~~~~
+```
 
-~~~~
+```javascript
 //1-boolean.js
 const isActive = true;
 
 console.log('Tipo de variável :', typeof isActive)
-~~~~
+```
 
-~~~~
+```javascript
 //1-null.js
 const nullVariable = null;
 
 console.log('nullVariable :', typeof nullVariable)
-~~~~
+```
 
-~~~~
+```javascript
 //1-undefined.js
 const undefinedVariable = true;
 
 console.log('Tipo de variável :', typeof undefinedVariable)
-~~~~
+```
 
-~~~~
+```javascript
 //1-symbol.js
 
 const symbol1 = Symbol();
@@ -413,18 +416,18 @@ const nameSymbol1 = Symbol('name');
 const nameSymbol2 = Symbol('name');
 
 const user = {
-	[nameSymbol1]: 'Daniel',
-	[nameSymbol2]: 'Outro nome',
-	lastName: 'Negrisoli Batista'
+  [nameSymbol1]: 'Daniel',
+  [nameSymbol2]: 'Outro nome',
+  lastName: 'Negrisoli Batista'
 }
 
 console.log(user);
 
 //symbols criam propriedades que não são enuberables
 for (const key in user) {
-	if (user.hasOwnPoperty(key)) {
-		console.log(`\nValor da chave ${key}: ${user[key]}`);
-	}
+  if (user.hasOwnPoperty(key)) {
+    console.log(`\nValor da chave ${key}: ${user[key]}`);
+  }
 }
 
 console.log('Propriedades do objeto user: ', Object.keys(user));
@@ -438,17 +441,17 @@ console.log('Todas propriedads do objeto user: ', Reflect.ownKeys(user));
 
 //criar um enum
 const directions = {
-	UP		: Symbol( 'UP' ),
-	DOWN	:	Symbol( 'DOWN' ),
-	LEFT	:	Symbol( 'LEFT' ),
-	RIGHT	:	Symbol( 'RIGHT' )
+  UP: Symbol('UP'),
+  DOWN: Symbol('DOWN'),
+  LEFT: Symbol('LEFT'),
+  RIGHT: Symbol('RIGHT')
 };
-~~~~
+```
 
-~~~~
+```javascript
 //1-object.js
 let user = {
-	name: 'Daniel'
+  name: 'Daniel'
 };
 
 console.log(user);
@@ -469,13 +472,13 @@ console.log(user);
 //deletando uma propriedade
 delete user.name;
 console.log(user);
-~~~~
+```
 
-~~~~
+```javascript
 //2-object.js
 let user = {
-	name: 'Daniel',
-	lastName: 'Negrisoli Batista'
+  name: 'Daniel',
+  lastName: 'Negrisoli Batista'
 };
 
 //recupera as chaves do objeto
@@ -512,21 +515,22 @@ delete person.name;
 person.age = 36;
 
 console.log('\nVariável person após as alterações: ', person);
-~~~~
+```
 
 ## Aula II - Functions e operadores
 
-**Functions**
-~~~~
+### Functions
+
+```javascript
 //1-function.js
 function fn() {
-	return 'Code here';
+  return 'Code here';
 }
 
 const arrowFn = () => 'Code here';
 const arrowFn2 = () => {
-	//mais de uma expressão
-	return 'Code here';
+  //mais de uma expressão
+  return 'Code here';
 }
 
 //funções também são objetos
@@ -534,8 +538,6 @@ fn.prop = 'Posso criar propriedades';
 
 console.log(fn());
 console.log(fn.prop);
-
-
 
 //receber parâmetros
 const logValue = value => console.log(value);
@@ -547,9 +549,9 @@ logFnResult(fn);
 
 //receber e retorna funções
 const controlFnExec => fnParam => allowed => {
-	if (allowed) {
-		fnParam();
-	}
+  if (allowed) {
+    fnParam();
+  }
 }
 
 const handleFnExecution = controlFnExec(fn);
@@ -559,62 +561,61 @@ handleFnExecution(); //não executará a funçao fn
 
 //controlFnExec como função
 function controlFnExec(fnParam) {
-	return function(allowed) {
-		if (allowed) {
-			fnParam();
-		}
-	}
+  return function(allowed) {
+    if (allowed) {
+      fnParam();
+    }
+  }
 }
-~~~~
+```
 
-~~~~
+```javascript
 //2-function.js
 (() => {
-	this.name = 'Nome no contexto de criação';
+this.name = 'Nome no contexto de criação';
 
-	const getNameArrowFn = () => this.name;
+const getNameArrowFn = () => this.name;
 
-	function getName() {
-		return this.name;
-	}
+function getName() {
+  return this.name;
+}
 
-	const user = {
-		name: 'Nome no objeto de execução',
-		getNameArrowFn,
-		getName
-	}
+const user = {
+  name: 'Nome no objeto de execução',
+  getNameArrowFn,
+  getName
+}
 
-	console.log(user.getNameArrowFn());
-	console.log(user.getName());
-
+console.log(user.getNameArrowFn());
+console.log(user.getName());
 })();
-~~~~
+```
 
-~~~~
+```javascript
 //1-array.js
 const users = ['Daniel', 'Pedro', 'Jennifer'];
 
 const gender = {
-	MAN: Symbol('M'),
-	WOMAN: Symbol('W')
+  MAN: Symbol('M'),
+  WOMAN: Symbol('W')
 }
 
 const persons = [
-	{
-		name: 'Daniel',
-		age: 35,
-		gender: gender.MAN
-	},
-	{
-		name: 'Pedro',
-		age: 44,
-		gender: gender.MAN
-	},
-	{
-		name: 'Jennifer',
-		age: 18,
-		gender: gender.WOMAN
-	}
+  {
+    name: 'Daniel',
+    age: 35,
+    gender: gender.MAN
+  },
+  {
+    name: 'Pedro',
+    age: 44,
+    gender: gender.MAN
+  },
+  {
+    name: 'Jennifer',
+    age: 18,
+    gender: gender.WOMAN
+  }
 ];
 
 //retornar a quantidade de itens de um array
@@ -625,7 +626,7 @@ console.log('A variável person é um array: ', Array.isArray(persons));
 
 //iterar os itens do array
 persons.forEach(person, index, arr => {
-	console.log(`Nome: ${person.name} index: ${index}`);
+  console.log(`Nome: ${person.name} index: ${index}`);
 });
 
 //filtrar array
@@ -634,33 +635,34 @@ console.log('\nNova lista apenas com homens: ', mens);
 
 //retornar um novo
 const personWithCourse = persons.map(person => {
-	person.course = 'Introdução ao Javascript';
-	return person;
+  person.course = 'Introdução ao Javascript';
+  return person;
 });
 
 console.log('\nPessoal com a adição do curso: ', personWithCourse);
 
 //transformar um array em outro tipo (primeiro param é o novo item, o segundo param é o item do array)
 const totalAge = persons.reduce((age, person) => {
-	age += person.age;
-	return age;
+  age += person.age;
+  return age;
 }, 0);
 
 console.log('\nSoma de idade das pessoas: ', totalAge);
 
 //justando operações
 const totalEvenAges = persons
-												.filter(person => person.age % 2 === 0)
-												.reduce((age, person) => {
-													age += person.age;
-													return age;
-												}, 0);
+    .filter(person => person.age % 2 === 0)
+    .reduce((age, person) => {
+      age += person.age;
+      return age;
+    }, 0);
 
 console.log('\nSoma de idade das pessoas que possuem idade par: ', totalEvenAges);
-~~~~
+```
 
-**Operadores**
-~~~~
+### Operadores
+
+```javascript
 //1-artimeticos.js
 //módulo (%)
 //operador binário. retorna o inteiro restante da divisão dos dois operadores
@@ -687,9 +689,9 @@ x--
 
 //operador de agrupamento ()
 2 * (3 + 2)
-~~~~
+```
 
-~~~~
+```javascript
 //1-atribuicao.js
 //atribuição
 x = y
@@ -713,9 +715,9 @@ x /= y
 //atribuição de resto
 x = x % y //ou
 x %= y
-~~~~
+```
 
-~~~~
+```javascript
 //1-comparacao.js
 
 //igual (==)
@@ -755,18 +757,18 @@ var1 < var2
 //retorna verdadeiro caso o operando da esquerda seja menor ou igual ao da direita
 var1 <= var2
 var2 <= 5
-~~~~
+```
 
-~~~~
+```javascript
 //1-condicional.js
 //ternário
 condicao ? valor1 : valor2
 
 true ? 'foo' : 'bar' //retorna 'foo'
 false ? 'foo' : 'bar' //retorna 'bar'
-~~~~
+```
 
-~~~~
+```javascript
 //1-logicos.js
 exp1 && exp2
 
@@ -806,9 +808,9 @@ var n3 = !"Gato";   //retorna false (string com valor é verdadeira)
 
 //False
 ""
-~~~~
+```
 
-~~~~
+```javascript
 //1-unarios.js
 
 //deletar algo
@@ -817,9 +819,9 @@ delete something;
 //determinar o tipo
 //O typeof é um operador unário que retorna em um string indicando um tipo de operando.
 typeof something;
-~~~~
+```
 
-~~~~
+```javascript
 //2-binarios.js
 //in
 something in somethingItems
@@ -830,7 +832,7 @@ var arvores = new Array("pau-brasil", "loureiro", "cedro", "carvalho", "sicômor
 3 in arvores;           //retorna true
 6 in arvores;           //retorna false
 "cedro" in arvores      //retorna false (você deve especificar o número do índice),
-												//não o valor naquele índice
+                        //não o valor naquele índice
 "cedro" in arvores[2]   //retorna true
 "length" in arvores     //retorna true (length é uma propriedade de Array)
 
@@ -853,13 +855,15 @@ objeto instanceof tipoObjeto
 var dia = new Date(2020, 4, 13);
 
 if(dia instanceof Date) {
-		//code here
+  //code here
 }
-~~~~
+```
 
 ## Aula III - Spread, estruturas condicionais e repetição
-**Spread**
-~~~~
+
+### Spread
+
+```javascript
 //1-spread.js
 //spread ...
 var partes = ['ombro', 'joelhos'];
@@ -868,149 +872,148 @@ var musica = ['caceca', ...partes, 'e', 'pés'];
 function fn(x, y, x) { }
 var args = [0, 1, 2];
 fn(...args);
-~~~~
+```
 
-~~~~
+```javascript
 //1-if.js
 /*
-if (condidtion) {
-	//code
+if (condition) {
+  //code
 }
 */
 
 const array = [0, 1, 2, 3, 4, 5];
 
 array.forEach(item => {
-	if (item % 2 === 0) {
-		console.log(`O número ${item} é par`);
-	} else {
-		console.log(`o número ${item} é impar`);
-	}
+  if (item % 2 === 0) {
+    console.log(`O número ${item} é par`);
+  } else {
+    console.log(`o número ${item} é impar`);
+  }
 });
-~~~~
+```
 
-~~~~
+```javascript
 //1-esle-if.js
 /*
 if (condidtion) {
-	//code
+  //code
 } else if (condition) {
-	//code
+  //code
 }
 */
 
 const array = [2, 3, 4, 5, 6, 8, 10, 15];
 
 array.forEach(item => {
-	if (item % 2 === 0) {
-		console.log(`O número ${item} é divisível por 2`);
-	} else if(item % 3 === 0) {
-		console.log(`o número ${item} é divisível por 3`);
-	} else if(item % 5 === 0) {
-		console.log(`o número ${item} é divisível por 5`);
-	}
+  if (item % 2 === 0) {
+    console.log(`O número ${item} é divisível por 2`);
+  } else if(item % 3 === 0) {
+    console.log(`o número ${item} é divisível por 3`);
+  } else if(item % 5 === 0) {
+    console.log(`o número ${item} é divisível por 5`);
+  }
 });
-~~~~
+```
 
-~~~~
+```javascript
 //1-switch.js
 /*
 switch (expression) {
-	case valor1:
-		[break;]
+  case valor1:
+    [break;]
 
-	case valorN:
-		[break;]
+  case valorN:
+    [break;]
 
-	default:
-		[break;]
+  default:
+    [break;]
 }
 */
 
 const fruit = 'pera';
 
 switch (fruit) {
-	case 'banana':
-		console.log('R$ 3,00 / KG')
-		break;
-	case 'mamão':
-	case 'pera':
-		console.log('R$ 2,00 / KG')
-		break;
-	default:
-		console.log('Produto não existe no estoque');
-		break;
+  case 'banana':
+    console.log('R$ 3,00 / KG')
+    break;
+  case 'mamão':
+  case 'pera':
+    console.log('R$ 2,00 / KG')
+    break;
+  default:
+    console.log('Produto não existe no estoque');
+    break;
 }
-~~~~
+```
 
-~~~~
+```javascript
 //1-for.js
 
 /*
 for ([expressaoInicial]; [condicao]; [incremento]) {
-	//code
+  //code
 }
 */
 
 const array = ['one', 'two', 'three'];
 
 for (let index = 0; index < array.length; index++) {
-	const element = array[index];
-	console.log(`Element #${index}: ${element}`);
+  const element = array[index];
+  console.log(`Element #${index}: ${element}`);
 }
-~~~~
+```
 
-~~~~
+```javascript
 //1-for-in-of.js
 let arr = [3, 5, 7];
 arr.foo = "hello";
 
 //for-in - imprime indices do array
 for (let i in arr) {
-	console.log(i); 	//0, 1, 2, foo
+console.log(i); //0, 1, 2, foo
 }
 
 //for-of - imprime valores do array
 for (let i of arr) {
-	console.log(i); 	//3, 5, 7
+  console.log(i); //3, 5, 7
 }
-~~~~
+```
 
-~~~~
+```javascript
 //1-while.js
 /*
 while(condicao) {
-		code
+	code
 }
 */
 
 var n = 0;
 var x = 0;
 while(n < 3) {
-	n++;
-	x += n;			//1, 3, 6
+  n++;
+  x += n; //1, 3, 6
 }
 
 console.log(x);
-~~~~
+```
 
-~~~~
-
+```javascript
 //1-do-while.js
 /*
 do
-	code
+ code
 while(condicao);
 */
 
 let i = 0;
 do {
-	i += 1;
-	console.log(i);
+ i += 1;
+ console.log(i);
 } while (i < 5);
-~~~~
+```
 
-~~~~
+```javascript
 //1-controle-repeticao.js
 //break
 console.log('Exemplo de utilização de break');
@@ -1018,13 +1021,13 @@ console.log('Exemplo de utilização de break');
 var index = 0;
 
 while(true) {
-	index++;
+  index++;
 
-	if (index > 2) {
-		break;
-	}
+  if (index > 2) {
+    break;
+  }
 
-	console.log(index);
+  console.log(index);
 }
 
 
@@ -1033,130 +1036,136 @@ console.log('\nExemplo de utilização de continue');
 const array = [1, 2, 3, 4, 5, 6];
 
 for(let index = 0; index < array.length; index++) {
-	const element = array[index];
+  const element = array[index];
 
-	if (element % 2 === 0) {
-		continue;
-	}
+  if (element % 2 === 0) {
+    continue;
+  }
 
-	console.log(element);
+  console.log(element);
 }
-~~~~
+```
 
 # Módulo III - Orientação a objetos e Design Patterns com a linguagem ES6
-> Autor: Guilherme Cabrini da Silva
-Origem: Digital Innovation One
+
+- Autor: Guilherme Cabrini da Silva
+- Origem: Digital Innovation One
 
 ## Aula I - Introdução a orientação a objetos
 
-**Herança**
+### Herança
 
 Herança é baseada em protótipos, onde é utilizada aparece o tipo prototype, toda vez que é criada uma variável no javascript é criado um referência __proto__ que aponta para o prototype do tipo que criamos, esse tipo é o constructor. Baseado em um constructor é criado um prototype e nessa variável é armazenada a referência __proto__
+
 - baseadas em protótipos
 - prototype
 - __proto__
 - constructor
 
-~~~~
+```javascript
 'use strict';
 const myText = 'Hello prototype!';
 console.log(myText.split('')); //<-- de onde vem o split?
 
 const myText2 = String('Hello prototype!');
 console.log(myText2.__proto__.split) //<-- quando é criado uma string é utilizado a função construtora String, essa função construtora carrega um prototype, e toda vez que é criado uma variável utilizando uma função construtora é criada uma referência __proto__ .
-~~~~
+```
 
 O que ocorre no javascript ao utilizar *new*?
-~~~~
+
+```javascript
  new Foo(...);
-~~~~
+```
+
 1. Um novo objeto é criado, herdando Foo.prototype;
 2. A função construtora Foo é chamda com os argumentos específicados e com o *this* vínculado ao novo o obejto criado;
 3. Caso a função construtora tenha um retorno explíctio, será respeitado o seu *return*, senão, será retornado o objeto criado no passo 1.
 
-~~~~
+```javascript
 //1-heranca.js
 //exemplo simples de herança, onde um construtor chama o outro
 function Animal(quatidadePatas) {
-	this.quatidadePatas = quatidadePatas;
+  this.quatidadePatas = quatidadePatas;
 }
 
 function Cachorro(morde) {
-	Animal.call(this, 4);
+  Animal.call(this, 4);
 
-	this.morde = morde;
+  this.morde = morde;
 }
 
 const pug = new Cachorro(false);
 console.log(pug);
 //Cachorro {quatidadePatas: 4, morde: false}
-~~~~
+```
 
-**Classes**
+### Classes
+
 - ES6
 - simplificação da herança de protótipos
 - palavra chave **class**
 
-~~~~
+```javascript
 //1-classes.js
 'use strict';
 
 class Animal {
-	constructor(quatidadePatas) {
-		this.quatidadePatas = quatidadePatas
-	}
+  constructor(quatidadePatas) {
+    this.quatidadePatas = quatidadePatas
+  }
 }
 
 class Cachorro extends Animal {
-	constructor(morde) {
-		super(4);
-		this.morde = 4;
-	}
+  constructor(morde) {
+    super(4);
+    this.morde = 4;
+  }
 }
 
 const pug = new Cachorro(false);
 console.log(pug);
 //Cachorro {quatidadePatas: 4, morde: false}
-~~~~
+```
 
-**Modificadores de acesso**
+### Modificadores de acesso
+
 - Javascript não tem, no Node 12 haverá.
 - privado / público
 
-~~~~
+```javascript
 //1-modificadores-de-acesso.js
 'user script';
 
 /*
 //como function
 function Person(initialName) {
-	let name = initialName;
+  let name = initialName;
 
-	this.getName = function() {
-		return name
-	}
+  this.getName = function() {
+    return name
+  }
 
-	this.setName = function(newName) {
-		name = newName;
-	}
+  this.setName = function(newName) {
+    name = newName;
+  }
 }
 */
 
 //versão 12
 class Person {
-	#name = '';
+  #name = '';
 
-	constructor(initialName) {
-		this.#name = initialName;
-	}
+  constructor(initialName) {
+    this.#name = initialName;
+  }
 
-	getName = function() {
-		return this.#name
-	}
+  getName = function() {
+    return this.#name
+  }
 
-	setName = function(newName) {
-		this.#name = newName;
-	}
+  setName = function(newName) {
+    this.#name = newName;
+  }
 }
 
 
@@ -1174,12 +1183,13 @@ p.name;
 p.setName('Thiago');
 p.getName();
 //Thiago
-~~~~
+```
 
-**Encapsulamento**
+### Encapsulamento
+
 - Oculta detalhes do funcionamento interno
 
-~~~~
+```javascript
 //1-encapsulamento.js
 
 'use strict';
@@ -1187,41 +1197,41 @@ p.getName();
 //funções
 /*
 function Person(initialName) {
-	var name = initialName;
+  var name = initialName;
 
-	Object.defineProperty(this, 'name', {
-		get: function() {
-			return name;
-		},
-		set: function(value) {
-			name = value;
-		}
-	});
+  Object.defineProperty(this, 'name', {
+    get: function() {
+      return name;
+    },
+    set: function(value) {
+      name = value;
+    }
+  });
 }
 */
 
 class Person {
-	#name = '';
+  #name = '';
 
-	constructor(name) {
-		this.#name = name;
-	}
+  constructor(name) {
+    this.#name = name;
+  }
 
-	get name() {
-		return this.#name
-	}
+  get name() {
+    return this.#name
+  }
 
-	set name(name) {
-		this.#name = name;
-	}
+  set name(name) {
+    this.#name = name;
+  }
 }
-~~~~
+```
 
+### Static
 
-**Static**
 - Acessar métodos/atributos sem instanciar
 
-~~~~
+```javascript
 //1-static.js
 'use strict';
 
@@ -1230,7 +1240,7 @@ class Person {
 function Person() {}
 
 Person.walk = function() {
-	console.log('walking...');
+  console.log('walking...');
 }
 
 console.log(Person.walk());
@@ -1238,59 +1248,67 @@ console.log(Person.walk());
 */
 
 class Person {
-	static walk() {
-		console.log('walking..');
-	}
+  static walk() {
+    console.log('walking..');
+  }
 }
 
 console.log(Person.walk());
 //walking...
-~~~~
+```
 
 ## Aula II - Introdução a Design Patterns
 
 ### Definição
+
 Design Patterns ou padrões de projetos são soluções generalistas para problemas reccorentes durante o desenvolvimento de um software. Não se trata de um framework ou código pronto, mas de uma definição de alto nível de como um problema comum pode ser solucionado.
 
-**A Pattern Language**
+#### A Pattern Language
+
 - 1978
 - Christopher Alexander, Sara Ishikawa e Murray Silverstein.
 - 253 tipos de problemas/desafios de projetos
 
-**Formato de um pattern**
+#### Formato de um pattern
+
 - Nome
 - Exemplo
 - Contexto
 - Problema
 - Solução
 
-**Using Pattern Languages for Object-Oriented Programs**
+#### Using Pattern Languages for Object-Oriented Programs
+
 - 1987
 - Kent Beck e Ward Cunningham
 - 5 padrões de projeto
 
-**Design Patters: Elements of Reusable Object-Oriented Software**
+#### Design Patters: Elements of Reusable Object-Oriented Software
+
 - 1994
 - Gang of four (GoF)
 - Erich Gamma, Richard Helm, Ralph Johnson e John Vlissides
 
 ### Tipos
-**Criação**
+
+#### Criação
 
 Os padrões de criação são aqueles que abstraem e/ou adiam o processo de criação dos objetos. Eles ajudam a tornar um sistema independente de como seus objetos são criados, compostos e representados.
 
-*Padrões de criação*
+##### Padrões de criação
+
 - Abstract Factory
 - Builder
 - Factory Method
 - Prototype
 - Singleton
 
-**Estruturais**
+#### Estruturais
 
 Os padrões estruturais se preocupam com a forma como classes e objetos são compostos para forma estrutura maiores.
 
-*Padrões estruturais*
+##### Padrões estruturais
+
 - Adapter
 - Bridge
 - Composite
@@ -1300,11 +1318,12 @@ Os padrões estruturais se preocupam com a forma como classes e objetos são com
 - Flyweight
 - Proxy
 
-**Comportamentais**
+#### Comportamentais
 
 Os padrões de comportamento se concentram nos algoritmos e atribuições de responsabilidades entre os objetos. Ele não descrevem apenas padrões de objetos ou de classes, mas também os padroes de comunicação entre os objetos.
 
-*Padrões comportamentais*
+##### Padrões comportamentais
+
 - Chain of Responsability
 - Command
 - Interpreter
@@ -1316,48 +1335,48 @@ Os padrões de comportamento se concentram nos algoritmos e atribuições de res
 - Template Method
 - Visitor
 
-
 ### Patterns mais utilizados no javascript
-**Factory**
+
+#### Factory
 
 Todas as funções que retornam um objeto, sem a necessidade de chamá-las com o new, são considerasd funções *Factory*.
 
-~~~~
+```javascript
 //1-factory.js
 //Todas as funções que retornam um objeto, sem a necessidade de chamá-las com o new, são considerasd funções *Factory*.
 
 function Pessoa(customProperties) {
-	return {
-		name: 'Daniel',
-		lastName: 'Negrisoli Batista',
-		...customProperties
-	}
+  return {
+    name: 'Daniel',
+    lastName: 'Negrisoli Batista',
+    ...customProperties
+  }
 }
 
 // Factory
 const pessoa = Pessoa({name: 'Custom Name', age: 35});
 console.log(pessoa);
-~~~~
+```
 
-**Singleton**
+#### Singleton
 
 O objetivo desse pattern é criar uma única instância de uma função construtora e retorná-la toda vez que for necessário utilizá-la.
 
-~~~~
+```javascript
 //2-singleton.js
 
 var SETTINGS = {
-	api: 'http://localhost',
-	trackJsToken: '12345'
+  api: 'http://localhost',
+  trackJsToken: '12345'
 }
 
 //retorna Pessoa.instance quando instanciado, caso contrario instancia e depois devolve
 function Pessoa() {
-	if (!Pessoa.instance) {
-		Pessoa.instance = this;
-	}
+  if (!Pessoa.instance) {
+    Pessoa.instance = this;
+  }
 
-	return Pessoa.instance
+  return Pessoa.instance
 }
 
 const pessoa = Pessoa.call({name: 'Daniel'});
@@ -1367,24 +1386,24 @@ const pessoa2 = Pessoa.call({name: 'Custom Name'});
 console.log(pessoa);
 
 console.log(pessoa2);
-~~~~
+```
 
-**Decorator**
+#### Decorator
 
 Uma função decorator recebe uma outra função como parâmetro e estende o seu comportamento sem modificá-la explicitamente.
 
-~~~~
+```javascript
 //3-decorator.js
 
 //função
 let loggedIn = false;
 
 function callIfAuthenticated(fn) {
-	return !!loggedIn && fn();
+  return !!loggedIn && fn();
 }
 
 function sum(a, b) {
-	return a + b;
+  return a + b;
 }
 
 console.log(callIfAuthenticated(() => sum(2, 3)));
@@ -1393,31 +1412,31 @@ loggedIn = true;
 console.log(callIfAuthenticated(() => sum(2, 3)));
 loggedIn = false;
 console.log(callIfAuthenticated(() => sum(2, 3)));
-~~~~
+```
 
-**Observer**
+#### Observer
 
 É um pattern muito popular em aplicações javascript. A instância (subscriber) mantém uma coleção de objetos (observers) e notifica todos eles quando ocorrem mudanças no estado.
 
-~~~~
+```javascript
 //4-observer.js
 
 class Observable {
-	constructor() {
-		this.observables = [];
-	}
+  constructor() {
+    this.observables = [];
+  }
 
-	subscribe(fn) {
-		this.observables.push(fn);
-	}
+  subscribe(fn) {
+    this.observables.push(fn);
+  }
 
-	notify(data) {
-		this.observables.forEach(fn => fn(data));
-	}
+  notify(data) {
+    this.observables.forEach(fn => fn(data));
+  }
 
-	unsubscribe(fn) {
-		this.observables = this.observables.filter(obs => obs !== fn);
-	}
+  unsubscribe(fn) {
+    this.observables = this.observables.filter(obs => obs !== fn);
+  }
 }
 
 const o = new Observable();
@@ -1435,27 +1454,27 @@ o.notify('notified 1');
 o.unsubscribe(logData2);
 
 o.notify('notified 2');
-~~~~
+```
 
-**Module**
+#### Module
 
 É um pattern que possibilita organizarmos melhor o nosso código necessidade de expor variáveis globais.
 
-~~~~
+```javascript
 //5-module.js
 let name = 'default';
 
 function getName() {
-	return name;
+  return name;
 }
 
 function setName(newName) {
-	name = newName;
+  name = newName;
 }
 
 module.exports = {
-	getName,
-	setName
+  getName,
+  setName
 };
 
 
@@ -1465,31 +1484,32 @@ const {getName, setName} = require('./5-module.js');
 console.log(getName());
 console.log(setName('Daniel'));
 console.log(getName());
-~~~~
+```
 
-**Exercícios**
+#### Exercícios - Módulo III - Aula II
 
 **De acordo com o código abaixo, as alternativas corretas são:**
-~~~~
-function Pessoa(nome, idade) {
-	this.nome = nome;
-	this.idade = idade;
 
-	return {
-		nome,
-		idade: 20,
-		falar() {
-			console.log('objeto falar');
-		}
-	}
+```javascript
+function Pessoa(nome, idade) {
+  this.nome = nome;
+  this.idade = idade;
+
+  return {
+    nome,
+    idade: 20,
+    falar() {
+      console.log('objeto falar');
+    }
+  }
 }
 
 Pessoa.prototype.falar = function() {
-	console.log('prototype falar');
+  console.log('prototype falar');
 };
 
 const pessoa = new Pessoa('Foo', 30);
-~~~~
+```
 
 **Com base no código acima, observe as afirmativas abaixo:**
 
@@ -1503,33 +1523,33 @@ IV  - A expressão "pessoa.__proto__.falar === undefined" retornará true. Pois 
 
 V   - Executando a função "pessoa.falar()" será logado no console o texto 'prototype falar'.
 
-**R: I, III, IV**
-
+R: I, III, IV
 
 **Analise a classe abaixo e seleciona a alternativa em que todas as afirmações são corretas:**
-~~~~
+
+```javascript
 class ID {
-	static #contador = 0;
+  static #contador = 0;
 
-	static get contador() {
-		return this.#contador;
-	}
+  static get contador() {
+    return this.#contador;
+  }
 
-	static incrementaContador() {
-		return ++this.#contador;
-	}
+  static incrementaContador() {
+    return ++this.#contador;
+  }
 }
 
 class Cliente {
-	#id = 0;
+  #id = 0;
 
-	constructor() {
-		this.#id = ID.incrementaContador();
-	}
+  constructor() {
+    this.#id = ID.incrementaContador();
+  }
 
-	get id() {
-		return this.#id;
-	}
+  get id() {
+    return this.#id;
+  }
 }
 
 const c1 = new Cliente();
@@ -1539,7 +1559,7 @@ const c2 = new Cliente();
 const c3 = new Cliente();
 
 console.log(`Contador atual: ${ID.contador}.`);
-~~~~
+```
 
 **As afirmativas abaixo são:**
 
@@ -1553,14 +1573,14 @@ IV  - Quando uma função possui todos os atributos/métodos static não é poss
 
 V   - Métodos que possuem a palavra-chave static, só podem ser chamados por outros métodos static.
 
-**R: I, II, III**
-
+R: I, II, III
 
 **De acordo com o código abaixo, selecione a alternativa em que todas as comparações retornam true:**
-~~~~
+
+```javascript
 const name = 'Foo';
 const lastName = String('Bar');
-~~~~
+```
 
 I   - name.constructor === lastName.constructor
 
@@ -1570,30 +1590,30 @@ III - lastName.__proto__ === String.prototype
 
 IV  - name.__proto__.split === lastName.__proto__.split
 
-**R: I, III, IV**
-
+R: I, III, IV
 
 **Analise o código abaixo:**
-~~~~
+
+```javascript
 function Conta() {}
-Conta.prototype.rendimento = 0;
-Conta.prototype.depositar = function() {}
-Conta.prototype.retirar = function() {}
-Conta.prototype.exibirSaldo = function() {
-	return `O saldo da conta é: ${this.saldo}.`;
+  Conta.prototype.rendimento = 0;
+  Conta.prototype.depositar = function() {}
+  Conta.prototype.retirar = function() {}
+  Conta.prototype.exibirSaldo = function() {
+    return `O saldo da conta é: ${this.saldo}.`;
 }
 
 function ContaPoupanca() {
-	this.exibirSaldo = function() {
-		return 'Operação não disponível';
-	}
+  this.exibirSaldo = function() {
+    return 'Operação não disponível';
+  }
 }
 
 ContaPoupanca.prototype.rendimento = 0.03;
 ContaPoupanca.prototype = Object.create(Conta.prototype);
 
 const contaPoupanca = new ContaPoupanca();
-~~~~
+```
 
 **Agora avalie as afirmativas abaixo e assinale a alternativa que apresenta as corretas:**
 
@@ -1607,25 +1627,25 @@ IV  - O valor do atributo "rendimento" da variável "contaPoupanca" será 0.3.
 
 V   - O retorno da função "contaPoupanca.__proto__.exibirSaldo()" será: "O saldo da conta é: undefined.".
 
-**R: I, V**
-
+R: I, V
 
 **Analisando o código abaixo, quais serão as saídas dos console.log:**
-~~~~
+
+```javascript
 function Pessoa(nome) {
-	this.nome = nome;
+  this.nome = nome;
 }
 
 function PessoaFisica(nome, cpf) {
-	Pessoa.call(this, nome);
+  Pessoa.call(this, nome);
 
-	this.cpf = cpf;
+  this.cpf = cpf;
 }
 
 function PessoaJuridica(nome, cnpj) {
-	Pessoa(nome);
+  Pessoa(nome);
 
-	this.cnpj = cnpj;
+  this.cnpj = cnpj;
 }
 
 const pessoaFisica = new PessoaFisica('Foo', '123.456.670-0');
@@ -1633,100 +1653,103 @@ const pessoaJuridica = new PessoaJuridica('Bar', '12.345.678/9012-34');
 
 console.log(pessoaFisica);
 console.log(pessoaJuridica);
-~~~~
-**R: 'PessoaFisica {nome: "Foo", cpf: "123.456.670-0"}' e 'PessoaJuridica {cnpj: "12.345.678/9012-34"}'.**
+```
+
+R: 'PessoaFisica {nome: "Foo", cpf: "123.456.670-0"}' e 'PessoaJuridica {cnpj: "12.345.678/9012-34"}'.
 
 **No código abaixo as funções "adicionaUsuarioLogado" e "executaSeUsuarioEstaLogado" são exemplos de qual pattern:**
-~~~~
-function adicionaUsuarioLogado(fn) {
-	const usuarioLogado = {
-		nome: 'Foo',
-		sobrenome: 'Bar'
-	};
 
-	fn(usuarioLogado);
+```javascript
+function adicionaUsuarioLogado(fn) {
+  const usuarioLogado = {
+    nome: 'Foo',
+    sobrenome: 'Bar'
+  };
+
+  fn(usuarioLogado);
 }
 
 function executaSeUsuarioEstaLogado(usuarioLogado, fn) {
-	if (!usuarioLogado) {
-		console.log('Usuário não está logado.');
-		return;
-	}
+  if (!usuarioLogado) {
+    console.log('Usuário não está logado.');
+    return;
+  }
 
-	fn();
+  fn();
 }
 
 function notificaUsuarioLogado(usuarioLogado) {
-	console.log(`Bem-vindo usuário ${usuarioLogado.nome}!`);
+  console.log(`Bem-vindo usuário ${usuarioLogado.nome}!`);
 }
 
 adicionaUsuarioLogado(
-	usuarioLogado => executaSeUsuarioEstaLogado(usuarioLogado, () => {
-		notificaUsuarioLogado(usuarioLogado);
-	})
+  usuarioLogado => executaSeUsuarioEstaLogado(usuarioLogado, () => {
+    notificaUsuarioLogado(usuarioLogado);
+  })
 );
-~~~~
+```
 
-**R: Decorator.**
+R: Decorator.
 
 **Analise as funções abaixo e selecione a alternativa em que todas são consideradas Factory:**
-~~~~
+
+```javascript
 I -
 function exibeNome(nome) {
-	console.log(nome);
+  console.log(nome);
 }
 
 II -
 function Pessoa(nome) {
-	this.nome = nome;
+  this.nome = nome;
 }
 
 III -
 function Pessoa(nome) {
-	return {
-		nome
-	};
+  return {
+    nome
+  };
 }
 
 IV -
 function recuperaDadosFormulario(formulario) {
-	if (!formulario) {
-		return {};
-	}
+  if (!formulario) {
+    return {};
+  }
 
-	const dados = {
-		nome: formulario.nome,
-		idade: formulario.idade
-	};
+  const dados = {
+    nome: formulario.nome,
+    idade: formulario.idade
+  };
 
-	return dados;
+  return dados;
 }
 
 V -
 function setNome(nome) {
-	this.nome = nome;
+  this.nome = nome;
 }
-~~~~
+```
 
-**R: III, IV**
-
+R: III, IV
 
 **Na versão 12 do nodejs é possível que uma classe possua propriedades privadas aplicando um prefixo "#" no nome de seus atributos e métodos. Analise a classe abaixo e selecione a informação que possui o que será exibido pelos "console.log" respectivamente:**
-~~~~
+
+```javascript
 class Pessoa {
-	#nome = '';
+  #nome = '';
 
-	constructor(nome) {
-		this.#nome = nome;
-	}
+  constructor(nome) {
+    this.#nome = nome;
+  }
 
-	get nome() {
-		return `Seu nome é: ${this.#nome}.`;
-	}
+  get nome() {
+    return `Seu nome é: ${this.#nome}.`;
+  }
 
-	set nome(novoNome) {
-		this.#nome = novoNome;
-	}
+  set nome(novoNome) {
+    this.#nome = novoNome;
+  }
 }
 
 const pessoa = new Pessoa();
@@ -1735,37 +1758,44 @@ console.log(pessoa);
 console.log(pessoa.nome);
 pessoa.nome = 'Foo';
 console.log(pessoa.nome);
-~~~~
-**R: "Pessoa {#nome: "Foo"}", "Seu nome é: undefined." e "Seu nome é: Foo."**
+```
+
+R: "Pessoa {#nome: "Foo"}", "Seu nome é: undefined." e "Seu nome é: Foo."
 
 # Módulo IV - Manipulação e iteração de arrays
-> Autor: Guilherme Cabrini da Silva
-Origem: Digital Innovation One
+
+- Autor: Guilherme Cabrini da Silva
+- Origem: Digital Innovation One
 
 ## Aula I - Criando e manipulando arrays
+
 ### Criar um array
-**Criação comum**
-~~~~
+
+#### Criação comum
+
+```javascript
 //1-criando-arrays.js
 const arr = [1, 2, 3];
 const arr2 = new Array(1, 2, 3);
 console.log(arr)
 console.log(arr2)
-~~~~
+```
 
-**Array.of**
+#### Array.of
 
 Cria uma nova instância de array a partir do número de parâmetros informados.
-~~~~
+
+```javascript
 //1-criando-arrays.js
 const arr3 = Array.of(1, 2, 3);
 console.log(arr3)
-~~~~
+```
 
-**Por instância**
+#### Por instância
 
 Cria uma nova instância de array de acordo com os parâmetros informados
-~~~~
+
+```javascript
 //1-criando-arrays.js
 const arr4 = Array(3);
 console.log(arr4)
@@ -1774,26 +1804,28 @@ console.log(arr4)
 const arr5 = Array(3, 2);
 console.log(arr5)
 // [3, 2]
-~~~~
+```
 
-**Array.from**
+#### Array.from
 
 Cria uma nova instância de array a partir de um parâmetro array-like ou iterable object
-~~~~
+
+```javascript
 //1-criando-arrays.js
 //node list
 const divs = document.querySelectetorAll('div');
 //converte para array
 const arr6 = Array.from(divs);
 console.log(arr6)
-~~~~
+```
 
 ### Inserir e remover elementos
-**push**
+
+#### push
 
 Adiciona um ou mais elementos no final do array e retorna o tamanaho do novo array
 
-~~~~
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr1 = ['banana', 'melancia', 'abacate'];
 const arr1Length = arr1.push('acerola');
@@ -1803,12 +1835,13 @@ console.log(arr1Length)
 
 console.log(arr1)
 //['banana', 'melancia', 'abacate', 'acerola']
-~~~~
+```
 
-**pop**
+#### pop
 
 Remove o último elemento de um array e retorna o elemento removido
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr2 = ['banana', 'melancia', 'abacate'];
 const removedItem = arr2.pop();
@@ -1818,12 +1851,13 @@ console.log(removedItem);
 
 console.log(arr2)
 //['banana', 'melancia'];
-~~~~
+```
 
-**unshift**
+#### unshift
 
 Adiciona um ou mais elementos no início do array e retorna o tamanho do novo array
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr3 = ['banana', 'melancia', 'abacate'];
 const arr3Length = arr2.unshift('acerola');
@@ -1833,12 +1867,13 @@ console.log(arr1Length)
 
 console.log(arr1)
 //['acerola', 'banana', 'melancia', 'abacate']
-~~~~
+```
 
-**shift**
+#### shift
 
 Remove o primeiro elemento de um array e retorna o elemento removido
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr4 = ['banana', 'melancia', 'abacate'];
 const removedItemArr4 = arr4.pop();
@@ -1848,12 +1883,13 @@ console.log(removedItemArr4);
 
 console.log(arr4)
 //['melancia', 'abacate'];
-~~~~
+```
 
-**concat**
+#### concat
 
 Concatena um ou mais arrays retornando um novo array
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr5 = ['banana', 'melancia', 'abacate'];
 const arr6 = ['coxinha', 'kibe', 'empada'];
@@ -1861,12 +1897,13 @@ const arr7 = arr5.concat(arr6);
 
 console.log(arr7)
 //['banana', 'melancia', 'abacate', 'coxinha', 'kibe', 'empada']
-~~~~
+```
 
-**slice**
+#### slice
 
 Retorna um novo array "fatiando" o array de acordo com o início e fim
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr8 = ['banana', 'melancia', 'abacate', 'acerola', 'laranja'];
 
@@ -1885,12 +1922,13 @@ console.log(arr8.slice(-1));
 //realiza o mesmo procedimento do a partir de porém ao contrário
 console.log(arr8.slice(-3));
 //['abacate', 'acerola', 'laranja']
-~~~~
+```
 
-**splice**
+#### splice
 
 Altera um array adicionando novos elementos enquanto remove elementos antigos
-~~~~
+
+```javascript
 //2-inserir-remover-elementos-arrays.js
 const arr9 = [1, 2, 3, 4, 5];
 
@@ -1909,61 +1947,67 @@ arr9.splice(0, 0, 'first');
 
 console.log(arr9);
 //["first", 1, 2]
-~~~~
+```
 
 ## Aula II - Iterar, buscar e transformar elementos
 
 ### Iterar elementos
-**forEach**
+
+#### forEach
 
 Iteração de cada item dentro de um array
-~~~~
+
+```javascript
 //3-iterar.js
 const arr1 = [1, 2, 3, 4, 5];
 
 //forEach
 //Iteração de cada item dentro de um array
 arr1.forEach((value, index) => {
-	console.log(`${index}: ${value}`);
+  console.log(`${index}: ${value}`);
 });
-~~~~
+```
 
-**map**
+#### map
 
 Retorna um novo array, de mesmo tamanho, iterando cada item de um array
-~~~~
+
+```javascript
 //3-iterar.js
 const arr2 = [1, 2, 3, 4, 5];
 const arrMap = arr2.map(value => value * 2);
 console.log(arrMap)
-~~~~
+```
 
-**flat**
+#### flat
 
 Retorna um novo array com todos os elementos de um sub-array concatenados de forma recursiva de acordo com a profundidade especificada(depth)
-~~~~
+
+```javascript
 //3-iterar.js
 const arr3 = [20, 34, [35, 60, [70, 40]]];
 //recebe como parametro a profundidade
 const arrFlat = arr3.flat(2)
-~~~~
+```
 
-**flatMap**
+#### flatMap
 
 Retorna um novo array assim como a função map e executa um flat de profundidade 1
-~~~~
+
+```javascript
 //3-iterar.js
 const arr4 = [1, 2, 3, 4, 5];
 const arrFlatMap = arr4.flatMap(value => [value * 2]);
 
 console.log(arrFlatMap);
 //[2, 4, 6, 8]
-~~~~
+```
 
-**keys**
+#### keys
 
 Retorna um Array Iterator que contém as chaves para cada elemento do array.
-~~~~
+
+```javascript
 //3-iterar.js
 const arr5 = [1, 2, 3, 4];
 const arrIterator = arr.keys();
@@ -1979,12 +2023,13 @@ arrIterator.next();
 
 arrIterator.next();
 //{value: 3, done: true}
-~~~~
+```
 
-**Values**
+#### Values
 
 Retorna um Array Iterator que contém os valores para cada elemento do array
-~~~~
+
+```javascript
 //3-iterar.js
 const arr6 = [1, 2, 3, 4];
 const arrIterator = arr.values();
@@ -2000,12 +2045,13 @@ arrIterator.next();
 
 arrIterator.next();
 //{value: 4, done: true}
-~~~~
+```
 
-**Entries**
+#### Entries
 
 Retorna um Array Iterator que contém os pares chave/valor para cada elemento do array
-~~~~
+
+```javascript
 //3-iterar.js
 const arr6 = [1, 2, 3, 4];
 const arrIterator = arr.entries();
@@ -2021,13 +2067,15 @@ arrIterator.next();
 
 arrIterator.next();
 //{value: [3, 4], done: true}
-~~~~
+```
 
 ### Buscar elementos
-**find**
+
+#### find
 
 Retorna o primeiro item de um array que satisfaz a condição
-~~~~
+
+```javascript
 //4-buscar.js
 //find
 //Retorna o primeiro item de um array que satisfaz a condição
@@ -2035,60 +2083,65 @@ const arr = [1, 2, 3, 4];
 const firstGreatThanTwo = arr.find(value => value > 2);
 
 console.log(firstGreatThanTwo);
-~~~~
+```
 
-**findIndex**
+#### findIndex
 
 Retorna o índice do primeiro item de um array que satisfaz a condição
-~~~~
+
+```javascript
 //4-buscar.js
 const arr2 = [1, 2, 3, 4];
 const firstGreatThanTwo2 = arr2.findIndex(value => value > 2);
 
 console.log(firstGreatThanTwo2);
 //2
-~~~~
+```
 
-**filter**
+#### filter
 
 Retorna um novo array com todos os elementos que satisfazem a condição
-~~~~
+
+```javascript
 //4-buscar.js
 const arr3 = [1, 2, 3, 4];
 const allValuesGreatThanTwo = arr3.findIndex(value => value > 2);
 
 console.log(allValuesGreatThanTwo);
 //[3, 4]
-~~~~
+```
 
-**indexOf**
+#### indexOf
 
 Retorna o primeiro índice em que um elemento pode ser encontrado no array
-~~~~
+
+```javascript
 //4-buscar.js
 const arr4 = [1, 2, 3, 4];
 const firstIndexOfItem = arr4.indexOf(3);
 
 console.log(firstIndexOfItem);
 //1
-~~~~
+```
 
-**lastIndexOf**
+#### lastIndexOf
 
 Retorna o último índice em que um elemento pode ser encontrado no array
-~~~~
+
+```javascript
 //4-buscar.js
 const arr4 = [1, 2, 3, 4];
 const lastIndexOfItem = arr4.lastIndexOf(3);
 
 console.log(lastIndexOfItem);
 //4
-~~~~
+```
 
-**includes**
+#### includes
 
 Retorna um booleano verificando se determinado elemento existe no array
-~~~~
+
+```javascript
 //4-buscar.js
 const arr5 = [1, 3, 3, 4, 3]
 
@@ -2097,69 +2150,77 @@ const hasItemOne = arr5.includes(1);
 
 const hasItemTwo = arr5.includes(2);
 //false
-~~~~
+```
 
-**some**
+#### some
 
 Retorna um bolleano verificando se pelo menos um item do array satisfaz a condição.
-~~~~
+
+```javascript
 //4-buscar.js
 const arr6 = [1, 3, 3, 4, 3];
 
 const hasSomeEvenNumber = arr6.some(value => value % 2 === 0);
 //true
-~~~~
+```
 
-**every**
+#### every
 
 Retorna um bolleano verificando se todos os itens de um array satisfazem a condição
-~~~~
+
+```javascript
 //4-buscar.js
 const arr7 = [1, 3, 3, 4, 3];
 
 const allEvenNumbers = arr7.some(value => value % 2 === 0);
 //false
-~~~~
+```
 
 ### Ordenar elementos
-**sort**
+
+#### sort
 
 Ordena os elementos de um array de acordo com a condição
-~~~~
+
+```javascript
 //5-ordenar.js
 const arr8 = [{name: 'John', grade: 7}, {name: 'Jenny', grade: 5}, {name: 'Peter', grade: 4}];
 
 console.log(arr8.sort((curret, next) => next.grade - curret.grade));
 //[{name: 'John', grade: 7}, {name: 'Jenny', grade: 5}, {name: 'Peter', grade: 4}]
-~~~~
+```
 
-**reverse**
+#### reverse
 
 Inverte os elementos de um array
-~~~~
+
+```javascript
 //5-ordenar.js
 const arr9 = [1, 2, 3, 4, 5]
 
 console.log(arr.reverse());
 //[5, 4, 3, 2, 1]
-~~~~
+```
 
 ### Transforma em outro tipo de dados
-**join**
+
+#### join
 
 Junta todos os elementos de um array, separados por um delimitador e retorna uma string
-~~~~
+
+```javascript
 //6-transformar-dados.js
 const arr10 = [1, 2, 3, 4, 5];
 
 console.log('-');
 //"1-2-3-4-5"
-~~~~
+```
 
-**reduce**
+#### reduce
 
 Retorna um novo tipo de dado iterando cada posição de um array
-~~~~
+
+```javascript
 //6-transformar-dados.js
 const arr2 = [1, 2, 3, 4, 5]
 
@@ -2174,22 +2235,25 @@ console.log(arr3.reduce((totalGrades, student) => totalGrades += student.grade, 
 
 console.log(arr3.reduce((studentsNames, student) => studentsNames += student.name + ' ', ''));
 //John Jenny Peter
-~~~~
+```
 
 ### Exercícios
+
 **Assinale a alternativa que possui todas as formas possíveis de criar um array em que seu primeiro elemento possua o valor 2 (tipo** int):
-~~~~
+
+```javascript
 I   - [2];
 II  - Array.from(2);
 III - Array.of(2);
 IV  - Array(2);
 V   - new Array(2);
-~~~~
-**R: I, III**
+```
 
+R: I, III
 
 **Analise o código abaixo e assinale a alternativa que representa os valores corretos que serão exibidos nos console.log respectivamente:**
-~~~~
+
+```javascript
 const familiaPai = ["Avó Zeca", "Avô Aroldo"];
 const familiaMae = ["Avô Carlos", "Primo João Paulo"];
 
@@ -2198,33 +2262,36 @@ const familiaFilho = familiaPai.concat(familiaMae);
 console.log(familiaPai);
 console.log(familiaMae);
 console.log(familiaFilho);
-~~~~
-**R: ["Avó Zeca", "Avô Aroldo"], ["Avô Carlos", "Primo João Paulo"] e ["Avó Zeca", "Avô Aroldo", "Avô Carlos", "Primo João Paulo"]**
+```
 
+R: ["Avó Zeca", "Avô Aroldo"], ["Avô Carlos", "Primo João Paulo"] e ["Avó Zeca", "Avô Aroldo", "Avô Carlos", "Primo João Paulo"]
 
 **Analise o código abaixo e assinale a alternativa que representa os valores corretos que serão exibidos no console.log respectivamente:**
-~~~~
+
+```javascript
 const pessoas = ["Cris", "Alexandre", "Pablo", "Cris"];
 
 console.log(pessoas.indexOf("Cris"));
 console.log(pessoas.findIndex(nome => nome === "Cris"));
 console.log(pessoas.lastIndexOf("Cris"));
 console.log(pessoas.find(nome => nome === "Cris"));
-~~~~
-**R: 0, 0, 3, "Cris"**
+```
 
+R: 0, 0, 3, "Cris"
 
 **Assinale a alternativa que possui o valor retornado pela função flat:**
-~~~~
+
+```javascript
 const frutas = ["amora", ["laranja", ["melancia"], "acerola"]];
 
 console.log(frutas.flat(2));
-~~~~
-**R: ["amora", "laranja", "melancia", "acerola"]**
+```
 
+R: ["amora", "laranja", "melancia", "acerola"]
 
 **Analise o código abaixo e selecione a alternativa que possui as formas possíveis de se remover o item "acerola" alterando o array "frutas":**
-~~~~
+
+```javascript
 const frutas = ["melancia", "laranja", "acerola"];
 
 I   - frutas.shift();
@@ -2232,76 +2299,74 @@ II  - frutas.pop();
 III - frutas.splice(2, 1);
 IV  - frutas.slice(2, 1);
 V   - frutas.unshift();
-~~~~
+```
 
-**R: II e III.**
-
+R: II e III.
 
 **Analise o código abaixo e assinale a alternativa que possui o valor da variável "colaboradoresComSalario":**
-~~~~
+
+```javascript
 const colaboradores = [
-	{ nome: "Cris", horasTrabalhadas: 220 },
-	{ nome: "Rebeca", horasTrabalhadas: 210 }
+  { nome: "Cris", horasTrabalhadas: 220 },
+  { nome: "Rebeca", horasTrabalhadas: 210 }
 ];
 
 function adicionaSalario(colaborador) {
-	const salario = colaborador.horasTrabalhadas * 50;
-	colaborador.salario = salario;
+  const salario = colaborador.horasTrabalhadas * 50;
+  colaborador.salario = salario;
 
-	return {
-		salario: salario
-	};
+  return {
+    salario: salario
+  };
 }
 
 const colaboradoresComSalario = colaboradores.map(adicionaSalario);
 
 console.log(colaboradoresComSalario);
-~~~~
+```
 
-**R: [{salario: 11000}, {salario: 10500}]**
-
+R: [{salario: 11000}, {salario: 10500}]
 
 **De acordo com o código abaixo, o que será exibido no console.log:**
-~~~~
+
+```javascript
 const person = ["Cris"];
 
 person.push("James", "Jenny");
 person.push("John");
 
 console.log(person);
-~~~~
-**R: ["Cris", "James", "Jenny", "John"]**
+```
+
+R: ["Cris", "James", "Jenny", "John"]
 
 **Analise o código abaixo e assinale a alternativa que representa os valores corretos que serão exibidos nos console.log respectivamente:**
-~~~~
+
+```javascript
 const alunos = [
-	{ nome: "Cris", nota: 10 },
-	{ nome: "Alexandre", nota: 7 },
-	{ nome: "Pablo", nota: 4 }
+  { nome: "Cris", nota: 10 },
+  { nome: "Alexandre", nota: 7 },
+  { nome: "Pablo", nota: 4 }
 ];
 
 function alunoAprovado(aluno) {
-	return aluno.nota >= 7;
+  return aluno.nota >= 7;
 }
 
 console.log(alunos.filter(alunoAprovado));
 console.log(alunos.some(alunoAprovado));
 console.log(alunos.every(alunoAprovado));
-~~~~
-**R: [{ nome: "Cris", nota: 10 }, { nome: "Alexandre", nota: 7 }], true, false**
+```
 
+R: [{ nome: "Cris", nota: 10 }, { nome: "Alexandre", nota: 7 }], true, false
 
 **Analise o código abaixo e selecione a alternativa que possui o valor do array frutas após a execução das funções sort e reverse:**
-~~~~
+
+```javascript
 const frutas = ["amora", "laranja", "melancia", "acerola"];
 
 frutas.sort();
 frutas.reverse();
-~~~~
-**R: ["melancia", "laranja", "amora", "acerola"]**
+```
 
-
-
-
-
-
+R: ["melancia", "laranja", "amora", "acerola"]
